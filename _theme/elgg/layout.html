@@ -1,0 +1,76 @@
+{#
+    elgg/layout.html
+    ~~~~~~~~~~~~~~~~~
+
+    Sphinx layout template for the elgg theme
+#}
+{% extends "basic/layout.html" %}
+{% block header %}
+<div class="elgg-page">
+    <div class="elgg-page-header">
+        <div class="elgg-inner">
+            <img src="{{ pathto('_static/logo.png', 1) }}" width="144" height="76">
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="elgg-page-body">
+        <div class="elgg-inner">
+            <div class="elgg-layout elgg-layout-one-sidebar">
+                <div class="elgg-sidebar">
+                    {% block sidebarsearch %}
+                    <h3 style="margin-top: 1.5em;">{{ _('Search') }}</h3>
+                    <form class="search" action="{{ pathto('search') }}" method="get">
+                        <input type="text" name="q" />
+                        <input type="submit" value="{{ _('Go') }}" />
+                        <input type="hidden" name="check_keywords" value="yes" />
+                        <input type="hidden" name="area" value="default" />
+                    </form>
+                    {% endblock %}
+                    {% block sidebartoc %}
+                    <h3>{{ _('Table Of Contents') }}</h3>
+                    {{ toctree() }}
+                    {% endblock %}
+                </div>
+                <div class="elgg-main">
+                    {%- block document %}
+                      {{ super() }}
+                    {%- endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+    <div class="elgg-page-footer">
+        <div class="elgg-inner">
+            <div class="elgg-col elgg-col-3of5">
+                <div class="elgg-col elgg-col-1of2">
+                    <h2 class="elgg-heading-footer">Navigation</h2>
+                    <ul class="elgg-menu elgg-menu-footer-navigation elgg-menu-footer-navigation-default">
+                        <li class="elgg-menu-item-home"><a href="http://elgg.org" class="elgg-menu-content">Home</a></li>
+                        <li class="elgg-menu-item-community"><a href="http://community.elgg.org" class="elgg-menu-content">Community</a></li>
+                        <li class="elgg-menu-item-blog"><a href="http://blog.elgg.org" class="elgg-menu-content">Blog</a></li>
+                        <li class="elgg-menu-item-hosting"><a href="http://elgg.org/hosting.php" class="elgg-menu-content">Hosting</a></li>
+                        <li class="elgg-menu-item-services"><a href="http://elgg.org/services.php" class="elgg-menu-content">Services</a></li>
+                        <li class="elgg-menu-item-docs"><a href="http://docs.elgg.org" class="elgg-menu-content">Docs</a></li>
+                    </ul>
+                </div>
+                <div class="elgg-col elgg-col-1of2">
+                    <h2 class="elgg-heading-footer">Contact</h2>
+                    <p>info at elgg dot org</p>
+                </div>
+            </div>
+            <div class="elgg-col elgg-col-2of5">
+                <h2 class="elgg-heading-footer">Legal</h2>
+                &copy;2013 the Elgg Foundation<br />
+                Elgg is a registered trademark of Thematic Networks.<br />
+                <a href="http://elgg.org/domain.php">Domain policy</a>.<br />
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block relbar1 %}{% endblock %}
+{% block relbar2 %}{% endblock %}
